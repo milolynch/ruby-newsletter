@@ -8,7 +8,7 @@ CAMPUS = {
 }
 DATE = "Nov 20, 2019"
 
-SUBSCRIBERS = ["rhona@grimes.info", "cedricschmidt@robel.io", "edmond@ko.org", "bryant@cummingsfisher.biz", "alverta@bernhard.name"]
+SUBSCRIBERS = ["rhona@grimes.info", "edmond@ko.org", "bryant@cummingsfisher.biz"]
 UNSUBSCRIBED = ["cedricschmidt@robel.io", "alverta@bernhard.name"]
 
 ARTICLES = [
@@ -21,13 +21,10 @@ ARTICLES = [
   {"author": "Tony Keeling Cartwright", "title": "Design", "text": "Often people, especially computer engineers, focus on the machines. But in fact we need to focus on humans, on how humans care about doing programming or operating the application of the machines."},
 ]
 
-#########################
-# Methods to generate the newsletter
-#########################
+
 
 def calculate_recipients
-  # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
-  # write a method that will return an array of only the subscribers who haven't unsubscribed
+
   return SUBSCRIBERS
 end
 
@@ -35,20 +32,25 @@ def first_n_articles(number_of_articles)
   ARTICLES.first(number_of_articles)
 end
 
-def print_recipients()
-  ary = calculate_recipients
-  print ary
+def print_recipients
+  str = calculate_recipients.to_s
+  puts str[1..-2]
 end
 
 def print_one_article(article)
-  # Write a method that will take an article hash
-  # and print the title, author and text as a formatted string
-  # See the README/sample output for examples
+
+  puts "#{article[:title]}"
+  puts "by: #{article[:author]}"
+  puts "#{article[:text]}"
 end
 
+#calls print_one_article for each hash passed into it
 def print_many_articles(articles)
-  # Write a method that will take in an array of article hashes
-  # and format each one using the print_one_article method
+
+  articles.each do |article|
+    puts print_one_article(article)
+  end
+
 end
 
 def format_campus_location(campus)
@@ -82,11 +84,9 @@ def print_newsletter(number)
 end
 
 def run
-  # We want our program to print three articles by default,
-  # but we can change that number here
+
   print_newsletter(3)
 end
 
-# When we run "ruby newsletter.rb" in the command line,
-# the 'run' method will be called because we're calling it below.
+
 run
